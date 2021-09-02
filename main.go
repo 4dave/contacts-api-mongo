@@ -23,6 +23,11 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New())
 
+	// hello world
+	app.Get("/hello", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, World!")
+	})
+
 	app.Get("/contact/:id", func(c *fiber.Ctx) error {
 		id := c.Params("id")
 		contact, err := services.ContactGet(id)
